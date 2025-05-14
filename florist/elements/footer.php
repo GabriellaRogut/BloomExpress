@@ -220,9 +220,6 @@ document.addEventListener("DOMContentLoaded", function () {
             const field = row.cells[0].textContent.trim();
             const cell = row.cells[1];
            
-          //  alert(field);
-
-
 
             if (field != 'Password'){
               var newValue = cell.getElementsByTagName("input")[0].value;
@@ -269,10 +266,10 @@ document.addEventListener("DOMContentLoaded", function () {
                       cell.innerHTML = "***";            
                     }
 
-                               editBtn.style.display = "block";
-                              saveBtn.style.display = "none";
-                              cancelBtn.style.display = "none";
-                              row.classList.remove("editing");
+                    editBtn.style.display = "block";
+                    saveBtn.style.display = "none";
+                    cancelBtn.style.display = "none";
+                    row.classList.remove("editing");
   
                 } else {
 
@@ -283,8 +280,6 @@ document.addEventListener("DOMContentLoaded", function () {
                   cell.innerHTML += "<div class='error error-blink'>" + data.message + "</div>";
                 }
 
-
-   
             });
         }
     });
@@ -348,6 +343,7 @@ function toggleDropdown(button) {
         document.getElementById('openPopupBtn').addEventListener('click', openAccPopup);
 </script>
 
+
 <!-- copy to clipboard -->
 <script>
         function copyToClipboard() {
@@ -378,20 +374,6 @@ function toggleDropdown(button) {
   <?php
     }
   ?>
-
-
-  function fade(element) {
-    var op = 1;  // initial opacity
-    var timer = setInterval(function () {
-        if (op <= 0.1){
-            clearInterval(timer);
-            element.style.display = 'none';
-        }
-        element.style.opacity = op;
-        element.style.filter = 'alpha(opacity=' + op * 100 + ")";
-        op -= op * 0.1;
-    }, 50);
-  }
 </script>
 
 <!-- Bootstrap -->

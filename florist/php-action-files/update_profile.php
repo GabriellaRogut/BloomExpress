@@ -44,7 +44,6 @@
             $errorPrUpdate[] = "Existing Password Does Not Match your Input.";
         }  
 
-
         if ($newPass == ''){
             $errorPrUpdate[] = "You can Not delete your Password.";
         } else if ($newPass != $confirmPass && $newPass != ''){

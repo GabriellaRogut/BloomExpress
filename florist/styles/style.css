@@ -1131,11 +1131,6 @@ input:focus {
     padding: 4px;
 }
 
-.starred-content:before{
-    content: "*";
-    color: rgb(167, 29, 29);
-}
-
 
 /* media */
 @media (max-width: 1200px) {
@@ -1195,4 +1190,20 @@ input:focus {
     border-radius: 10px;
     border: 1px solid var(--gold);
     margin: 0 auto;
+}
+
+
+
+.starred-content:before{
+    content: "* ";
+    color: rgb(167, 29, 29);
+}
+
+.required-input{
+    display: inline-block;
+    width: 100%;
+}
+
+.starred-content{
+    display: inline;
 }
