@@ -177,6 +177,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
      
             if (this.textContent == "Edit") {
+
+                const elements = document.getElementsByClassName("error");
+                while(elements.length > 0){
+                    elements[0].parentNode.removeChild(elements[0]);
+                }
+
                 row.classList.add("editing");
                 const currentValue = cell.textContent.trim();
                 const inputType = row.cells[0].textContent.includes("Password") ? "password" : "text";
@@ -189,11 +195,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 if (inputType == "password") {
                   cell.innerHTML = `
-                    <input placeholder="Old Password" type="${inputType}" class="edit-input">
-
-                    <input placeholder="New Password" type="${inputType}" class="edit-input">
-                    
-                    <input placeholder="Confirm Password" type="${inputType}" class="edit-input">
+                    <input placeholder="Old Password" type="${inputType}" class="edit-input pass-edit-input pass-delete">
+                    <span style="display:none;">${currentValue}</span>
+                
+                    <input placeholder="New Password" type="${inputType}" class="edit-input pass-edit-input">
+                    <span style="display:none;">${currentValue}</span>
+                
+                    <input placeholder="Confirm Password" type="${inputType}" class="edit-input pass-edit-input pass-delete">
+                    <span style="display:none;">${currentValue}</span>
                      `;
                 }
 
@@ -210,34 +219,38 @@ document.addEventListener("DOMContentLoaded", function () {
             const row = e.target.closest("tr");
             const field = row.cells[0].textContent.trim();
             const cell = row.cells[1];
-            const newValue = cell.getElementsByTagName("input")[0].value;
+           
+          //  alert(field);
 
 
-            if (field == "password"){
-              const oldPass = cell.getElementsByTagName("input")[0].value;
-              const newPass = cell.getElementsByTagName("input")[1].value;
-              const confirmPass = cell.getElementsByTagName("input")[2].value;
+
+            if (field != 'Password'){
+              var newValue = cell.getElementsByTagName("input")[0].value;
+            } else {
+              var oldPass = cell.getElementsByTagName("input")[0].value;
+              var newValue = cell.getElementsByTagName("input")[1].value;
+              var confirmPass = cell.getElementsByTagName("input")[2].value;
             }
-
-            // if (newPass !== confirmPass) {
-            //   alert("Your Confirmation Password Does Not Match.");
-            //   return;
-            // }
-
+            
+            
             const field_id = row.cells[0].id;
-
+        
             const actionCell = row.cells[2];
             const saveBtn = actionCell.getElementsByClassName("save-btn")[0];
             const cancelBtn = actionCell.getElementsByClassName("cancel-btn")[0];
             const editBtn = actionCell.getElementsByClassName("edit-btn")[0];
 
 
-            if (field == "password"){
-              var fieldInfo = `field=${encodeURIComponent(field_id)}&value=${encodeURIComponent(oldPass)}&field1=${encodeURIComponent(field_id)}&value1=${encodeURIComponent(newPass)}&field2=${encodeURIComponent(field_id)}&value2=${encodeURIComponent(confirmPass)}`;
+            if (field == "Password"){
+              var fieldInfo = `field=${encodeURIComponent(field_id)}&oldPass=${encodeURIComponent(oldPass)}&newPass=${encodeURIComponent(newValue)}&confirmPass=${encodeURIComponent(confirmPass)}`;
             } else {
               var fieldInfo = `field=${encodeURIComponent(field_id)}&value=${encodeURIComponent(newValue)}`;
             }
 
+               const elements = document.getElementsByClassName("error");
+                while(elements.length > 0){
+                    elements[0].parentNode.removeChild(elements[0]);
+                }
 
             // Send data to PHP file using AJAX
             fetch('php-action-files/update_profile.php', {
@@ -251,15 +264,27 @@ document.addEventListener("DOMContentLoaded", function () {
             .then(data => {
                 if (data.success) {
                     cell.innerHTML = newValue;
+
+                    if ( field == 'Password' ) {
+                      cell.innerHTML = "***";            
+                    }
+
+                               editBtn.style.display = "block";
+                              saveBtn.style.display = "none";
+                              cancelBtn.style.display = "none";
+                              row.classList.remove("editing");
+  
                 } else {
-                    alert('Error: ' + data.message);
+
+                   if ( field == 'Password' ) {
+                      cell.innerHTML = "***";            
+                    }
+
+                  cell.innerHTML += "<div class='error error-blink'>" + data.message + "</div>";
                 }
 
-                editBtn.style.display = "block";
-                saveBtn.style.display = "none";
-                cancelBtn.style.display = "none";
-                row.classList.remove("editing");
 
+   
             });
         }
     });
@@ -353,6 +378,20 @@ function toggleDropdown(button) {
   <?php
     }
   ?>
+
+
+  function fade(element) {
+    var op = 1;  // initial opacity
+    var timer = setInterval(function () {
+        if (op <= 0.1){
+            clearInterval(timer);
+            element.style.display = 'none';
+        }
+        element.style.opacity = op;
+        element.style.filter = 'alpha(opacity=' + op * 100 + ")";
+        op -= op * 0.1;
+    }, 50);
+  }
 </script>
 
 <!-- Bootstrap -->

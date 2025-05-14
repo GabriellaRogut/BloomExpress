@@ -139,7 +139,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td id="email"><span class="star-rq">* </span> Email</td>
+                            <td id="email"><p class=" starred-content"></p>Email</td>
                             <td><?= $user['email'] ?></td>
                             <td class="edit-td">
                                 <button class="edit-btn edit-link">Edit</button>
@@ -157,8 +157,8 @@
                             </td>
                         </tr>
                         <tr>
-                            <td id="password"><span class="star-rq">*</span>Password</td>
-                            <td>***</td> <!-- PASSWORD -->
+                            <td id="password"><p class=" starred-content"></p>Password</td>
+                            <td>***</td>
                             <td class="edit-td">
                                 <button class="edit-btn edit-link">Edit</button>
                                 <button class="save-btn edit-link">Save</button>
@@ -201,6 +201,14 @@
                                 <button class="cancel-btn edit-link">Cancel</button>
                             </td>
                         </tr>
+
+                        <?php
+                            if ( isset( $errorPrUpdate ) ) {
+                                foreach( $errorPrUpdate as $err ) {
+                                    echo "<div class='error'>". $err . "</div>";
+                                }
+                            }
+                        ?>
                     </table>
             </div>
 

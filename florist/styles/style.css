@@ -1124,6 +1124,19 @@ input:focus {
 }
 
 
+.pass-edit-input{
+    margin-bottom: 5px;
+    margin-top: 5px;
+    font-size: 13px;
+    padding: 4px;
+}
+
+.starred-content:before{
+    content: "*";
+    color: rgb(167, 29, 29);
+}
+
+
 /* media */
 @media (max-width: 1200px) {
     .total-price {
@@ -1146,10 +1159,23 @@ input:focus {
     margin: 9px 0;
 }
 
+@keyframes blinkFade {
+      0%   { opacity: 0; }
+      50%  { opacity: 1; }
+      100% { opacity: 1; }
+    }
+
 .error {
     color: rgb(161, 25, 25) !important;
     font-size: 13px;
 }
+
+.error-blink{
+    animation: blinkFade 1.5s forwards;
+    padding-top: 4px;
+}
+
+
 
 
 .orders-success-background{
