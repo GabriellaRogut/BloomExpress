@@ -139,7 +139,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td class="required-input" id="email"><p class="starred-content"></p>Email</td>
+                            <td id="email"><p class="starred-content"></p>Email</td>
                             <td><?= $user['email'] ?></td>
                             <td class="edit-td">
                                 <button class="edit-btn edit-link">Edit</button>
@@ -157,7 +157,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td class="required-input" id="password"><p class="starred-content"></p>Password</td>
+                            <td id="password"><p class="starred-content"></p>Password</td>
                             <td>***</td>
                             <td class="edit-td">
                                 <button class="edit-btn edit-link">Edit</button>

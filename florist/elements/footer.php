@@ -272,11 +272,6 @@ document.addEventListener("DOMContentLoaded", function () {
                     row.classList.remove("editing");
   
                 } else {
-
-                   if ( field == 'Password' ) {
-                      cell.innerHTML = "***";            
-                    }
-
                   cell.innerHTML += "<div class='error error-blink'>" + data.message + "</div>";
                 }
 

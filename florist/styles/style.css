@@ -1199,11 +1199,6 @@ input:focus {
     color: rgb(167, 29, 29);
 }
 
-.required-input{
-    display: inline-block;
-    width: 100%;
-}
-
 .starred-content{
     display: inline;
 }

@@ -70,7 +70,7 @@
     } else {
         echo json_encode([
             'success' => false,
-            'message' => implode(', ', $errorPrUpdate)
+            'message' => implode('<br>', $errorPrUpdate)
         ]);
     }
 
