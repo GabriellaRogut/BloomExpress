@@ -159,7 +159,7 @@
                         <tr>
                             <td id="password"><p class="starred-content"></p>Password</td>
                             <td>***</td>
-                            <td class="edit-td">
+                            <td class="edit-td edit-td-pass">
                                 <button class="edit-btn edit-link">Edit</button>
                                 <button class="save-btn edit-link">Save</button>
                                 <button class="cancel-btn edit-link">Cancel</button>
