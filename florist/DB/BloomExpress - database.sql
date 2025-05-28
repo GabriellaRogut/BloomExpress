@@ -6,12 +6,18 @@ CREATE TABLE Gallery (
     image_path VARCHAR(255) NOT NULL
 );
 
+CREATE TABLE PromoCode(
+	promoCodeID INT PRIMARY KEY AUTO_INCREMENT,
+    promo_code VARCHAR(6),
+    type ENUM("Birthday", "New User"),
+    expirationDate DATE
+);
+
 
 CREATE TABLE User(
     userID INT PRIMARY KEY AUTO_INCREMENT,
     email VARCHAR(200) UNIQUE NOT NULL,
     password VARCHAR(255) NOT NULL,
-	promo_code VARCHAR(6),
 
     first_name VARCHAR(200),
     last_name VARCHAR(200),
@@ -21,6 +27,16 @@ CREATE TABLE User(
     ZIPCode VARCHAR(10),
     birthday DATE
 );
+
+CREATE TABLE User_PromoCode (
+    userID INT NOT NULL,
+    promoCodeID INT NOT NULL,
+    status ENUM ("Used", "Available", "Expired"),
+    PRIMARY KEY (userID, promoCodeID),
+    FOREIGN KEY (userID) REFERENCES User(userID) ON DELETE CASCADE,
+    FOREIGN KEY (promoCodeID) REFERENCES PromoCode(promoCodeID) ON DELETE CASCADE
+);
+
 
 CREATE TABLE Flowers (
     flowerID INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
@@ -173,16 +189,14 @@ VALUES ("Roses", 2.10),
 	("Tulips", 1.10),
     ("Lillies", 1.10);
 
-INSERT INTO R_M_Bouquets_Flowers(readyMadeID, flowerID)
-VALUES(1, 1),
-	(1, 2),
-    (1, 3);
+-- INSERT INTO R_M_Bouquets_Flowers(readyMadeID, flowerID)
+-- VALUES(1, 1),
+-- 	(1, 2),
+--     (1, 3);
 
 -- INSERT INTO User (email, password, first_name, last_name, phone, address, city, ZIPCode, birthday, promo_code)
 -- VALUES 
 -- ('test1@test.com', '1234', 'Test', 'Test', '1234567890', 'street', 'some city', '2345', '1990-05-15', 'PROMO1'),
--- ('t@test.com', '1111', 'tt', 'ttt', '0000000000', 'st', 'ct', '1234', '1992-07-22', 'PROMO2'),
--- ('noOrdersPerson@test.com', '123', '', '', '', '', '', '', '2001-12-02', 'PROMO3');
 
 INSERT INTO Ready_Made_Bouquets (image_path, name, price, category, size)
 VALUES  ("images/flower1.jpg", "Bouquet", 12.20, "Birthdays", "Small"),
@@ -201,6 +215,17 @@ VALUES  ("images/flower1.jpg", "Bouquet", 12.20, "Birthdays", "Small"),
 SELECT * FROM GuestUserOrder;
 SELECT * FROM Orders;
 SELECT * from User;
+
+SELECT * FROM User_PromoCode;
+
+INSERT INTO PromoCode (promo_code, type, expirationDate)
+VALUES ("PROMO", "Birthday", "2025-06-06");
+
+INSERT INTO PromoCode (promo_code, type, expirationDate)
+VALUES ("PROMO2", "Birthday", "2025-04-06");
+
+INSERT INTO User_PromoCode(userID, promoCodeID, status)
+VALUES (2, 3, "Expired");
 
 USE BloomExpress; 
 

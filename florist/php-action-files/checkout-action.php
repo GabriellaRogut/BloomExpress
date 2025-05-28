@@ -6,11 +6,13 @@
     if (isset($_SESSION['userIn'])){
         $userID = $_SESSION['user']['userID'];
 
+        
         $promoCodeExec = $connection->prepare("
-            SELECT promo_code 
-            FROM User
-            WHERE userID = ?
-        "); 
+            SELECT p.promo_code
+            FROM PromoCode p
+            JOIN User_PromoCode up ON p.promoCodeID = up.promoCodeID
+            WHERE up.userID = ?
+        ");
         $promoCodeExec->execute([$userID]);
         $promoCodeArr = $promoCodeExec->fetch();
         $userPromoCode = $promoCodeArr['promo_code'];
@@ -242,14 +244,15 @@
 
     
 
-
     if (isset($_SESSION['userIn']) && isset($_POST['submit_order']) && isset($_SESSION['promo_code_success'])){
         $deactivatePromoCode = $connection->prepare("
-            UPDATE User
-            SET promo_code = ?
-            WHERE userID = ?;
+            UPDATE PromoCode p
+            JOIN User_PromoCode up
+            ON p.promoCodeID = up.promoCodeID
+            SET status = ?
+            WHERE up.userID = ?;
         ");
-        $deactivatePromoCode->execute([null, $userID]);
+        $deactivatePromoCode->execute(["Used", $userID]);
     }
 
 

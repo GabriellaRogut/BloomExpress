@@ -28,6 +28,16 @@ function printrfunc($data){
         print_r( $data );
         exit;
 }
+
+
+// config
+$removeExpiredCode = $connection->query("
+        UPDATE User_PromoCode up
+        JOIN PromoCode p
+        ON up.promoCodeID = p.promoCodeID
+        SET up.status = 'Expired'
+        WHERE p.expirationDate < CURDATE()
+")
 ?>
 
 

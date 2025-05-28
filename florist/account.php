@@ -69,46 +69,69 @@
                 <?php if (isset($_SESSION['userIn']) && $_SESSION['userIn'] == true){ ?>
                     
                     <?php
-                        $userID = $_SESSION['user']['userID']; // get user's ID
-                        $user = $connection->prepare("
-                            SELECT * 
-                            FROM User 
-                            WHERE userID = ?"
-                        );
-                        $user->execute([$userID]);
-                        $user = $user->fetch();
+                        $user = $_SESSION['user'];
 
-
-                        $userPromoArr = $connection->prepare("
-                            SELECT promo_code
-                            FROM User 
-                            WHERE userID = ?"
-                        );
-                        $userPromoArr->execute([$userID]);
-                        $userPromoArr = $userPromoArr->fetchAll();
+                        $getUserPromos = $connection->prepare("
+                            SELECT *
+                            FROM PromoCode p
+                            JOIN User_PromoCode up 
+                            ON p.promoCodeID = up.promoCodeID
+                            WHERE up.userID = ?
+                        ");
+                        $getUserPromos->execute([$userID]);
+                        $userPromos = $getUserPromos->fetchAll();
                     ?>
                     
 
 
-                    <?php 
-                        if( $user['promo_code']) {
-                    ?>
-                            <div class="card promo-card">
-                                <div class="card-header">
-                                    <p>PROMO CODE</p>
-                                </div>
-                                <div class="card-body">
+                <?php 
+
+
+                foreach ($userPromos as $promo){
+                    if ($promo['status'] == "Available"){
+                ?>
+                    <div class="card promo-card">
+                        <div class="card-header">
+                            <p>PROMO CODE</p>
+                        </div>
+
+                        <div class="card-body">
+                            <?php 
+                                if ($promo['type'] == "New User"){ 
+                            ?>
                                     <h5 class="card-title">Thank you for Signing Up!</h5>
-                                    <p class="card-text">Your <span class="promo-txt">10% OFF</span> Promo Code is</p>
-                                    <h5 class="promo-code" onclick="copyToClipboard()" id="textToCopy"><?= $user['promo_code'] ?></h5>
-                                </div>
-                                <div class="card-footer text-body-secondary">
+                            <?php 
+                                } elseif ($promo['type'] == "Birthday") { 
+                            ?>
+                                    <h5 class="card-title">Happy Birthday to You or Your Loved One!</h5>
+                            <?php 
+                                } 
+                            ?>
+
+                            <p class="card-text">Your <span class="promo-txt">10% OFF</span> Promo Code is</p>
+                            <h5 class="promo-code" onclick="copyToClipboard()" id="textToCopy"><?= $promo['promo_code'] ?></h5>
+                        </div>
+
+                        <div class="card-footer text-body-secondary">
+                            <?php 
+                                if ($promo['expirationDate'] == null){
+                            ?>
                                     <p class="promo-exp-date">No Expiration Date</p>
-                                </div>
-                            </div>
-                    <?php
-                        }
-                    ?>
+                            <?php 
+                                } elseif (strtotime($promo['expirationDate']) > time()) {
+                            ?>
+                                    <p class="promo-exp-date">Your Code Expires on <?= $promo['expirationDate'] ?></p>
+                            <?php 
+                                }
+                            ?>
+                        </div>
+
+                    </div>
+                <?php 
+                    }
+                }
+                ?>
+
 
 
 

@@ -11,7 +11,6 @@
  
 
 
-
     if ( isset( $_POST['submitSU'] ) ) {
 
         $email = $_POST['email'];
@@ -33,29 +32,51 @@
         }
 
 
-        if ( !$errors ){
+        if (!$errors) {
             $promo_code = generatePromoCode();
             $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
 
+            $promoType = "New User";
+            $expirationDate = null;
 
-            $sql = "INSERT INTO User (email, password, promo_code) VALUES (?,?,?)";
-            $connection->prepare($sql)->execute([$email, $hashedPassword, $promo_code]);
 
-            $stmt = $connection->prepare("SELECT * FROM User WHERE email = ?"); 
-            $stmt->execute([ $email ]); 
-            $user = $stmt->fetch();    
+            $insertPromo = $connection->prepare("
+                INSERT INTO PromoCode (promo_code, type, expirationDate)
+                VALUES (?, ?, ?)
+            ");
+            $insertPromo->execute([$promo_code, $promoType, $expirationDate]);
+            $promoCodeID = $connection->lastInsertId();
+
+        
+            $sql = "INSERT INTO User (email, password) VALUES (?, ?)";
+            $connection->prepare($sql)->execute([$email, $hashedPassword]);
+
+            
+            $stmt = $connection->prepare("
+                SELECT * 
+                FROM User 
+                WHERE email = ?
+            ");
+            $stmt->execute([$email]);
+            $user = $stmt->fetch();
+
+        
+            $linkPromo = $connection->prepare("
+                INSERT INTO User_PromoCode (userID, promoCodeID, status)
+                VALUES (?, ?, ?)
+            ");
+            $linkPromo->execute([$user['userID'], $promoCodeID, "Available"]);
+
 
             $_SESSION['user'] = $user;
-
             $_SESSION['signUpSuccess'] = true;
-
-
-
             $_SESSION['userIn'] = true;
+
 
             echo "<script>document.location.href='account.php';</script>";
             exit;
         }
+
 
     }
 ?>
