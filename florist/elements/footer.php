@@ -178,6 +178,13 @@ document.addEventListener("DOMContentLoaded", function () {
      
             if (this.textContent == "Edit") {
 
+                if (row.cells[0].textContent.includes("Birthday")) {
+                    if ( document.getElementById("bday-text") ) {
+                      document.getElementById("bday-text").remove();
+                    }
+                }
+
+
                 const elements = document.getElementsByClassName("error");
                 while(elements.length > 0){
                     elements[0].parentNode.removeChild(elements[0]);
@@ -204,6 +211,30 @@ document.addEventListener("DOMContentLoaded", function () {
                     <input placeholder="Confirm Password" type="${inputType}" class="edit-input pass-edit-input pass-delete">
                     <span style="display:none;">${currentValue}</span>
                      `;
+                } 
+                
+                if (row.cells[0].textContent.includes("Birthday")) {
+                   if(currentValue){
+                    cell.innerHTML = `
+                      <input type="${inputType}" value="${currentValue}" class="edit-input" disabled>
+                      <span style="display:none;">${currentValue}</span>
+                    `;
+
+                    cell.innerHTML += `
+                    <p class="error bday-err"> 
+                      Note: You've already set your Birthday. If you've made a mistake, please Contact our Team. 
+                    </p>
+                    `;
+                   }
+
+                  if (!currentValue){
+                  cell.innerHTML += `
+                    <p class="error bday-err"> 
+                      Note: You can Only set your Birthday ONCE. If you've made a mistake, please Contact our Team. 
+                    </p>
+                    `;
+
+                  }
                 }
 
                 editBtn.style.display = "none";
@@ -302,6 +333,13 @@ document.addEventListener("DOMContentLoaded", function () {
             editBtn.style.display = "block";
             saveBtn.style.display = "none";
             cancelBtn.style.display = "none";
+
+            // cancel bday
+            if (row.cells[0].textContent.includes("Birthday") && !oldValue) {
+              cell.innerHTML = `
+                <div id='bday-text'>Set Your or Your Loved one's Birthday <br> to get <span class="promo-txt promo-txt-lin">10% OFF</span> for it.</div>
+              `;
+            }
         }
     });
 

@@ -1,13 +1,13 @@
 <?php
-    function generatePromoCode($length = 6) {
-        $characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-        $promoCode = '';
+    // function generatePromoCode($length = 6) {
+    //     $characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    //     $promoCode = '';
             
-        for ($i = 0; $i < $length; $i++) {
-            $promoCode .= $characters[rand(0, strlen($characters)-1)];
-        }
-        return $promoCode;
-    }
+    //     for ($i = 0; $i < $length; $i++) {
+    //         $promoCode .= $characters[rand(0, strlen($characters)-1)];
+    //     }
+    //     return $promoCode;
+    // }
  
 
 

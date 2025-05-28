@@ -11,7 +11,7 @@
             SELECT p.promo_code
             FROM PromoCode p
             JOIN User_PromoCode up ON p.promoCodeID = up.promoCodeID
-            WHERE up.userID = ?
+            WHERE up.userID = ? AND up.status = 'Available'
         ");
         $promoCodeExec->execute([$userID]);
         $promoCodeArr = $promoCodeExec->fetch();

@@ -69,7 +69,11 @@
                 <?php if (isset($_SESSION['userIn']) && $_SESSION['userIn'] == true){ ?>
                     
                     <?php
-                        $user = $_SESSION['user'];
+                        $userID = $_SESSION['user']['userID'];
+
+                        $getUser = $connection->prepare('SELECT * FROM User WHERE userID = ?');
+                        $getUser->execute([ $userID ]);
+                        $user = $getUser->fetch();
 
                         $getUserPromos = $connection->prepare("
                             SELECT *
@@ -82,11 +86,7 @@
                         $userPromos = $getUserPromos->fetchAll();
                     ?>
                     
-
-
                 <?php 
-
-
                 foreach ($userPromos as $promo){
                     if ($promo['status'] == "Available"){
                 ?>
@@ -217,8 +217,10 @@
                         </tr>
                         <tr>
                             <td id="birthday">Birthday</td>
-                            <td><?= $user['birthday'] ?></td>
-                            <td class="edit-td">
+                            <td><?= $user['birthday'] ? $user['birthday'] : "<div id='bday-text'>Set Your or Your Loved one's Birthday <br> to get <span class='promo-txt promo-txt-lin'>10% OFF</span> for it.</div>"?></td>
+
+                        
+                            <td class="edit-td edit-td-pass">
                                 <button class="edit-btn edit-link">Edit</button>
                                 <button class="save-btn edit-link">Save</button>
                                 <button class="cancel-btn edit-link">Cancel</button>

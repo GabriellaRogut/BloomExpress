@@ -1170,6 +1170,15 @@ td.edit-td-pass{
     font-size: 13px;
 }
 
+.bday-explain{
+    font-size: 13px;
+    color: var(--gray);
+}
+
+.bday-err{
+    margin-top: 5px;
+}
+
 .error-blink{
     animation: blinkFade 1.5s forwards;
     padding-top: 4px;
@@ -1207,3 +1216,9 @@ td.edit-td-pass{
 .starred-content{
     display: inline;
 }
+
+tr:last-child{
+    border-bottom: 1px solid #bbbbbbb4;
+    border-right:1px solid #bbbbbbb4;
+}
+
