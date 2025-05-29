@@ -1,5 +1,6 @@
 <?php
     include("../DB/connection.php");
+    include("../config/config.php");
 
     $cartItemID = $_POST['cart_item_removeID'];
 

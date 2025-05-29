@@ -1,14 +1,14 @@
 <?php
     include("../DB/connection.php");
+    include("../config/config.php");
     include("../php-action-files/guestCart.php");
 
 
     if (isset($_SESSION['userIn'])){
         $userID = $_SESSION['user']['userID'];
 
-        
         $promoCodeExec = $connection->prepare("
-            SELECT p.promo_code
+            SELECT p.promo_code, p.promoCodeID
             FROM PromoCode p
             JOIN User_PromoCode up ON p.promoCodeID = up.promoCodeID
             WHERE up.userID = ? AND up.status = 'Available'
@@ -16,6 +16,8 @@
         $promoCodeExec->execute([$userID]);
         $promoCodeArr = $promoCodeExec->fetch();
         $userPromoCode = $promoCodeArr['promo_code'];
+        $usedPromoID = $promoCodeArr['promoCodeID'];
+
 
 
         $cartInfo = $connection->prepare("
@@ -250,9 +252,9 @@
             JOIN User_PromoCode up
             ON p.promoCodeID = up.promoCodeID
             SET status = ?
-            WHERE up.userID = ?;
+            WHERE up.userID = ? and up.promoCodeID = ?;
         ");
-        $deactivatePromoCode->execute(["Used", $userID]);
+        $deactivatePromoCode->execute(["Used", $userID, $usedPromoID]);
     }
 
 

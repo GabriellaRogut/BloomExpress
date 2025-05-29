@@ -182,6 +182,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     if ( document.getElementById("bday-text") ) {
                       document.getElementById("bday-text").remove();
                     }
+                    
                 }
 
 

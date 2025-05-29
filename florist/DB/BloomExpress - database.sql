@@ -13,7 +13,6 @@ CREATE TABLE PromoCode(
     expirationDate DATE
 );
 
-
 CREATE TABLE User(
     userID INT PRIMARY KEY AUTO_INCREMENT,
     email VARCHAR(200) UNIQUE NOT NULL,
@@ -189,15 +188,6 @@ VALUES ("Roses", 2.10),
 	("Tulips", 1.10),
     ("Lillies", 1.10);
 
--- INSERT INTO R_M_Bouquets_Flowers(readyMadeID, flowerID)
--- VALUES(1, 1),
--- 	(1, 2),
---     (1, 3);
-
--- INSERT INTO User (email, password, first_name, last_name, phone, address, city, ZIPCode, birthday, promo_code)
--- VALUES 
--- ('test1@test.com', '1234', 'Test', 'Test', '1234567890', 'street', 'some city', '2345', '1990-05-15', 'PROMO1'),
-
 INSERT INTO Ready_Made_Bouquets (image_path, name, price, category, size)
 VALUES  ("images/flower1.jpg", "Bouquet", 12.20, "Birthdays", "Small"),
 		("images/flower2.jpg", "Bouquet2", 25.90, "Weddings & Engagements", "Big"),
@@ -209,6 +199,17 @@ VALUES  ("images/flower1.jpg", "Bouquet", 12.20, "Birthdays", "Small"),
         ("images/flower3.jpg", "Bouquet8", 10.90, "Weddings & Engagements", "Small"),
         ("images/flower1.jpg", "Bouquet9", 17.30, "Weddings & Engagements", "Big");
 
+INSERT INTO R_M_Bouquets_Flowers(readyMadeID, flowerID)
+VALUES(1, 1),
+	(1, 2),
+    (1, 3);
+    
+INSERT INTO R_M_Bouquets_Flowers(readyMadeID, flowerID)
+VALUES(2, 1),
+	(3, 2),
+    (3, 3),
+    (4, 2),
+    (4, 1);
 
 
 -- test
@@ -217,15 +218,7 @@ SELECT * FROM Orders;
 SELECT * from User;
 
 SELECT * FROM User_PromoCode;
-
-INSERT INTO PromoCode (promo_code, type, expirationDate)
-VALUES ("PROMO", "Birthday", "2025-06-06");
-
-INSERT INTO PromoCode (promo_code, type, expirationDate)
-VALUES ("PROMO2", "Birthday", "2025-04-06");
-
-INSERT INTO User_PromoCode(userID, promoCodeID, status)
-VALUES (2, 3, "Expired");
+SELECT * FROM PromoCode;
 
 USE BloomExpress; 
 

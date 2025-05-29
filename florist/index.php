@@ -1,4 +1,7 @@
-<?php include("DB/connection.php"); ?>
+<?php 
+include("DB/connection.php");
+include("config/config.php");
+?>
 
 <!DOCTYPE html>
 <html lang="en">

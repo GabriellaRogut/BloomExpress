@@ -1,5 +1,6 @@
 <?php 
     include("DB/connection.php");
+    include("config/config.php");
     include("php-action-files/guestCart.php");
 
     if (isset($_SESSION['userIn'])){

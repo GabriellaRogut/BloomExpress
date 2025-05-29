@@ -1,5 +1,6 @@
 <?php
     include("../DB/connection.php");
+    include("../config/config.php");
 
     $userID = $_SESSION['user']['userID'];
 
