@@ -1,8 +1,9 @@
 <?php 
-include("DB/connection.php");
-include("config/config.php");
+    include("DB/connection.php");
+    include("config/config.php");
+    include("php-action-files/guestCart.php");
 ?>
-<?php include("php-action-files/guestCart.php"); ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
