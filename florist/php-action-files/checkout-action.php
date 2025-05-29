@@ -53,8 +53,7 @@
             $totalA = $totalArr->fetch();
             $total = $totalA['total_price_cart'];
 
-
-            $discount = $total * $promotion_value; //10% = 0.1; etc.
+            $discount = $total * $promotionValue; //10% = 0.1; etc.
             $promoPrice = $total - $discount;
             
             $SetPromoPrice = $connection->prepare("
