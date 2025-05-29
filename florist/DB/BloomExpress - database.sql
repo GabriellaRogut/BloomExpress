@@ -11,7 +11,7 @@ CREATE TABLE PromoCode(
     promo_code VARCHAR(6),
     type ENUM("Birthday", "New User"),
     expirationDate DATE,
-    promotion_value DECIMAL 
+    promotion_value DECIMAL(10, 2) 
 );
 
 CREATE TABLE User(
