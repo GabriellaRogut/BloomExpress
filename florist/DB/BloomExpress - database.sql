@@ -10,7 +10,8 @@ CREATE TABLE PromoCode(
 	promoCodeID INT PRIMARY KEY AUTO_INCREMENT,
     promo_code VARCHAR(6),
     type ENUM("Birthday", "New User"),
-    expirationDate DATE
+    expirationDate DATE,
+    promotion_value DECIMAL 
 );
 
 CREATE TABLE User(
@@ -210,6 +211,24 @@ VALUES(2, 1),
     (3, 3),
     (4, 2),
     (4, 1);
+    
+
+-- TRIGGERS
+DELIMITER //
+CREATE TRIGGER SetPromoPercentageBeforeInsert
+BEFORE INSERT ON PromoCode
+FOR EACH ROW
+BEGIN
+    IF NEW.type = 'Birthday' THEN
+        SET NEW.promotion_value = 0.1;
+        END IF;
+    IF NEW.type = 'New User' THEN
+        SET NEW.promotion_value = 0.2;
+    END IF;
+END //
+DELIMITER ;
+
+-- DROP TRIGGER SetPromoPercentageBeforeInsert;
 
 
 -- test
@@ -220,6 +239,6 @@ SELECT * from User;
 SELECT * FROM User_PromoCode;
 SELECT * FROM PromoCode;
 
-USE BloomExpress; 
+USE BloomExpress;
 
 

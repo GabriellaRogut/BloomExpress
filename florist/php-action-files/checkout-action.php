@@ -8,7 +8,7 @@
         $userID = $_SESSION['user']['userID'];
 
         $promoCodeExec = $connection->prepare("
-            SELECT p.promo_code, p.promoCodeID
+            SELECT p.promo_code, p.promoCodeID, p.promotion_value
             FROM PromoCode p
             JOIN User_PromoCode up ON p.promoCodeID = up.promoCodeID
             WHERE up.userID = ? AND up.status = 'Available'
@@ -17,6 +17,7 @@
         $promoCodeArr = $promoCodeExec->fetch();
         $userPromoCode = $promoCodeArr['promo_code'];
         $usedPromoID = $promoCodeArr['promoCodeID'];
+        $promotionValue = $promoCodeArr['promotion_value'];
 
 
 
@@ -52,8 +53,8 @@
             $totalA = $totalArr->fetch();
             $total = $totalA['total_price_cart'];
 
-            $promotion = 0.1; // 10%
-            $discount = $total * $promotion;
+
+            $discount = $total * $promotion_value; //10% = 0.1; etc.
             $promoPrice = $total - $discount;
             
             $SetPromoPrice = $connection->prepare("
