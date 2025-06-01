@@ -139,7 +139,13 @@
 
 
 
-                    <div class="profile-title">Personal Information</div>
+                    <div class="profile-title-btn-div">
+                        <div class="profile-title">Personal Information</div>
+
+                        <form method="POST" action="php-action-files/log-out.php">
+                            <button type="submit" name="log-out" class="ss-btn log-out-btn">Log Out</button>
+                        </form>
+                    </div>
                 
                     <table class="profile-table">
                         <tr>

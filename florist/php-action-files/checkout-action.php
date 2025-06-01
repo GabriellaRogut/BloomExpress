@@ -293,5 +293,9 @@
 
     unset ($_SESSION['post_info']);
     unset($_SESSION['promo_code_used']);
-    echo "<script>document.location.href='../order-success-page.php';</script>"; // redirect to "order successfull" page
+
+
+    $_SESSION['order_complete'] = true;
+    header("Location: ../order-success-page.php");
+    exit; // redirect to "order successfull" page
 ?>

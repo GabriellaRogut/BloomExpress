@@ -1,7 +1,18 @@
 <?php 
     include("DB/connection.php");
+
+    if (!isset($_SESSION['order_complete']) || $_SESSION['order_complete'] != true) {
+        header("Location: index.php");
+        exit;
+    }
+
+    header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+    header("Pragma: no-cache");
+
     include("config/config.php");
     include("php-action-files/guestCart.php");
+
+
 
     if (isset($_SESSION['userIn'])){
         $userID = $_SESSION['user']['userID'];
@@ -267,5 +278,6 @@
 
 
     <?php include("elements/footer.php")?>
+
 </body>
 </html>
