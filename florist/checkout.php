@@ -2,12 +2,14 @@
     include("DB/connection.php");
 
 
+    // unset($_SESSION['order_complete']);
+
     if (isset($_SESSION['order_complete']) && $_SESSION['order_complete'] == true) {
         header("Location: order-success-page.php");
         exit;
     }
 
-    header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+    header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0, post-check=0, pre-check=0");
     header("Pragma: no-cache");
 
     include("config/config.php");

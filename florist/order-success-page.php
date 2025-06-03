@@ -38,7 +38,7 @@
         </div>
 
         <form method="POST" action="php-action-files/unset-order-success.php">
-            <button type="submit" name="unset-complete" class="ss-btn success-out-btn">Back to Homepage</button>
+            <button type="submit" name="unset-complete" value="unset" class="ss-btn success-out-btn">Back to Homepage</button>
         </form>
     </div>
 

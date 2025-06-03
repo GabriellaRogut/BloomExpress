@@ -1021,8 +1021,9 @@ input:focus {
 }
 
 .log-out-btn{
-    background-color: var(--pink);
-    color: var(--text-gold)
+    background-color: #fadaddc4;
+    color: var(--text-gold);
+    border-radius: 13px;
 }
 
 .promo-card {
