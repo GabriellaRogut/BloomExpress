@@ -295,8 +295,6 @@
     unset($_SESSION['promo_code_used']);
 
 
-    
-    $_SESSION['order_complete'] = true;
     header("Location: ../order-success-page.php");
     exit; // redirect to "order successfull" page
 ?>

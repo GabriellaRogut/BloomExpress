@@ -1,20 +1,7 @@
 <?php 
     include("DB/connection.php");
-
-
-    // unset($_SESSION['order_complete']);
-
-    if (isset($_SESSION['order_complete']) && $_SESSION['order_complete'] == true) {
-        header("Location: order-success-page.php");
-        exit;
-    }
-
-    header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0, post-check=0, pre-check=0");
-    header("Pragma: no-cache");
-
     include("config/config.php");
     include("php-action-files/guestCart.php");
-
 
 
     if (isset($_SESSION['userIn'])){
@@ -29,7 +16,21 @@
         $data = $userData->fetch();
 
         unset($data['promo_code']);
+
+
+
+        // check for antything in the cart (if there's nothing, don't show the form /for redirecting back/)
+        $cart = $connection->prepare("
+            SELECT ci.cartItemID 
+            FROM Cart c
+            JOIN Cart_Items ci
+            ON c.cartID = ci.cartID
+            WHERE userID = ?;
+        "); 
+        $cart->execute([$userID]); 
+        $cart = $cart->fetch();
     } 
+
 
     if (isset($_SESSION['post_info'])){
         $data = $_SESSION['post_info'];
@@ -51,6 +52,11 @@
 
 
 <body class="co-body">
+<?php 
+    // printrfunc( $_SESSION['cart']);
+    if (@$cart || @$_SESSION['cart']){
+?>
+
     <div class="col-12 checkout-container">
 
         <img src="images/logo.png" alt="logo" class="logo co-logo">
@@ -279,8 +285,23 @@
 
     </div>
 
-
     <?php include("elements/footer.php")?>
+         
+    <?php 
+        } 
+    ?>
+
+
+    <!-- prevent going back to form and resubmitting -->
+     <script>
+        function preventBack() {
+            window.history.forward(); 
+        }
+        
+        setTimeout("preventBack()", 0);
+        
+        window.onunload = function () { null };
+    </script>
 
 </body>
 </html>
