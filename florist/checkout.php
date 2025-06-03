@@ -1,8 +1,9 @@
 <?php 
     include("DB/connection.php");
 
-    if (!isset($_SESSION['order_complete']) || $_SESSION['order_complete'] != true) {
-        header("Location: index.php");
+
+    if (isset($_SESSION['order_complete']) && $_SESSION['order_complete'] == true) {
+        header("Location: order-success-page.php");
         exit;
     }
 
