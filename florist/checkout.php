@@ -297,10 +297,7 @@
         function preventBack() {
             window.history.forward(); 
         }
-        
-        setTimeout("preventBack()", 0);
-        
-        window.onunload = function () { null };
+        setTimeout(preventBack, 0);
     </script>
 
 </body>
