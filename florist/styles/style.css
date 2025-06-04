@@ -1182,6 +1182,10 @@ td.edit-td-pass{
     font-size: 13px;
 }
 
+.tcErr {
+    font-size: 11px ;
+}
+
 .bday-explain{
     font-size: 13px;
     color: var(--gray);

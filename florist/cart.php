@@ -286,22 +286,34 @@
                         <p class="cart-total-title cart-txt">cart total: <span class="total-price cart-txt"><?= number_format($total_c_price, 2, ".") ?></span></p>
                         <p>Transport and taxes calculated at checkout</p><br><br>
 
-                        <p class="cart-txt"><input type="checkbox" class="tc-checkbox"> I agree to <span class="tc-span">Terms and Conditions</span></p>
+                        <form method="POST" action="php-action-files/termsAndConditions.php">
+                            <p class="cart-txt">
+                                <input type="checkbox" class="tc-checkbox" value="on" name="terms_and_conditions"> I agree to <span class="tc-span">Terms and Conditions</span>                 
+                            </p>
 
+                            <?php
+                                if (isset($_SESSION['errorCheckbox']) && count($_SESSION['errorCheckbox'])){
+                                    foreach( $_SESSION['errorCheckbox'] as $error ) {
+                                        echo "<div class='error tcErr'>". $error . "</div>";
+                                    }
+                                }
+                            ?>
 
-                        <!-- only allow checkout if there are any items in the cart -->
-                        <?php 
-                            if (isset($items_cart) && !empty($items_cart)) { ?>
-                                <a href="checkout.php">
-                                    <button class="ss-btn checkout-btn">Checkout<i class="fa-solid fa-bag-shopping bag-icon"></i></button>
-                                </a>
-                        <?php 
-                            } else { 
-                        ?>
-                                <button disabled style="cursor: auto;" class="ss-btn checkout-btn">Checkout<i class="fa-solid fa-bag-shopping bag-icon"></i></button>
-                        <?php 
-                            } 
-                        ?>
+                            <!-- only allow checkout if there are any items in the cart and terms_and_conditions is checked -->
+                            <?php 
+                                if ((isset($items_cart) && !empty($items_cart))) { ?>
+                                    
+                                        <button class="ss-btn checkout-btn" name="checkout" value="checkout">Checkout<i class="fa-solid fa-bag-shopping bag-icon"></i></button>
+                                    
+                            <?php 
+                                } else { 
+                            ?>
+                                    <button disabled style="cursor: auto;" class="ss-btn checkout-btn" name="checkout" value="checkout">Checkout<i class="fa-solid fa-bag-shopping bag-icon"></i></button>
+                            <?php 
+                                } 
+                            ?>
+
+                        </form>
 
 
 
