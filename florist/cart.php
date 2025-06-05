@@ -288,7 +288,7 @@
 
                         <form method="POST" action="php-action-files/termsAndConditions.php">
                             <p class="cart-txt">
-                                <input type="checkbox" class="tc-checkbox" value="on" name="terms_and_conditions"> I agree to <span class="tc-span">Terms and Conditions</span>                 
+                                <input type="checkbox" class="tc-checkbox" value="on" name="terms_and_conditions"> I agree to <span class="tc-span termsAndConditionsLink"><a onclick="openTermsAndConditions()">Terms and Conditions</a></span>  
                             </p>
 
                             <?php
@@ -314,6 +314,151 @@
                             ?>
 
                         </form>
+
+
+                        <!-- Terms and Conditions Popup -->
+                        <div class="popup-overlay" id="tcOverlay" onclick="closeTermsAndConditions()"></div>
+                        <div class="popup s-popup" id="tcPopup">
+                            <span class="close-btn" onclick="closeTermsAndConditions()">✖</span>
+                            <div class="login-container">
+                                <div class="left termsAndConditionsPopup">
+                                    <h4><span>❁</span> BloomExpress <span>❁</span><br> Terms and Conditions</h4>
+                                    <p><strong><i>Last Updated: 2025-05-06</i></strong></p>
+
+                                    <p>Welcome to BloomExpress ("Company", "we", "our", "us"). These Terms and Conditions ("Terms") govern your use of our website [www.bloomexpress.com] (the "Site") and the sale and delivery of flower bouquets and related products and services (collectively, the "Services").</p>
+
+                                    <p>By accessing or using our Services, you agree to be bound by these Terms. If you do not agree, please do not use our Services.</p>
+
+                                    <h5>1. Eligibility</h5>
+                                    <p>You must be at least 18 years of age or have legal parental or guardian consent to use our Services. By placing an order, you confirm that all information provided is true and accurate.</p>
+
+                                    <h5>2. Products and Orders</h5>
+
+                                    <h6>2.1 Product Availability</h6>
+                                    <p>All floral products are subject to availability. If certain flowers or items are unavailable, we reserve the right to substitute with similar products of equal or greater value.</p>
+
+                                    <h6>2.2 Order Acceptance</h6>
+                                    <p>We reserve the right to refuse or cancel any order for reasons including but not limited to product availability, pricing errors, or suspected fraud.</p>
+
+                                    <h5>3. Pricing and Payment</h5>
+                                    <p>All prices are in [Insert Currency] and include applicable taxes unless otherwise noted. Payment is due at the time of order. We accept major credit/debit cards and any other methods displayed on our Site.</p>
+
+                                    <h5>4. Delivery</h5>
+
+                                    <h6>4.1 Delivery Areas</h6>
+                                    <p>We deliver to designated regions listed on our website. Orders outside our service areas may not be fulfilled.</p>
+
+                                    <h6>4.2 Delivery Times</h6>
+                                    <p>We strive to deliver on the requested date but cannot guarantee specific delivery times due to external factors.</p>
+
+                                    <h6>4.3 Incorrect Information</h6>
+                                    <p>We are not responsible for missed deliveries due to incorrect or incomplete delivery information provided by the customer.</p>
+
+                                    <h5>5. Cancellations & Refunds</h5>
+
+                                    <h6>5.1 Changes & Cancellations</h6>
+                                    <p>Orders can be modified or canceled up to 24 hours before the scheduled delivery. Contact us at [Insert Contact Email].</p>
+
+                                    <h6>5.2 Refunds</h6>
+                                    <p>Refunds or replacements will be considered for damaged, missing, or incorrect orders reported within 24 hours of delivery, with photo proof.</p>
+
+                                    <h5>6. Intellectual Property</h5>
+                                    <p>All content on the Site, including logos, images, and product designs, is owned by BloomExpress or licensed to us. Unauthorized use or reproduction is prohibited.</p>
+
+                                    <h5>7. Prohibited Conduct</h5>
+                                    <p>You agree not to:</p>
+                                    <ul>
+                                    <li>Use our Services for unlawful purposes.</li>
+                                    <li>Disrupt or interfere with the Site or servers.</li>
+                                    <li>Attempt to gain unauthorized access to any part of the Site.</li>
+                                    </ul>
+
+                                    <h5>8. Limitation of Liability</h5>
+                                    <p>BloomExpress shall not be liable for any indirect, incidental, or consequential damages arising from the use of our Services. Our liability is limited to the amount paid for your purchase.</p>
+
+                                    <h5>9. Indemnification</h5>
+                                    <p>You agree to indemnify and hold harmless BloomExpress and its employees, officers, and affiliates from any claims, damages, or losses arising from your use of the Services or breach of these Terms.</p>
+
+                                    <h5>10. Governing Law</h5>
+                                    <p>These Terms are governed by the laws of Bulgaria, without regard to its conflict of law rules.</p>
+
+                                    <h5>11. Changes to Terms</h5>
+                                    <p>We reserve the right to update these Terms at any time. Updates will be posted on this page. Continued use of our Services after changes means you accept the new Terms.</p>
+
+                                    <h5>12. Contact Us</h5>
+                                    <p>If you have any questions, please contact us:</p>
+                                    <p>
+                                    Email: <i> contact@bloomexpress.com </i><br>
+                                    Phone: <i> +359 00 000 0000 </i><br>
+                                    Address: <i> Pravets, Bulgaria </i><br>
+                                    Website: <i> www.bloomexpress.com </i>
+                                    </p>
+
+                                    <h4><span>❁</span> BloomExpress <span>❁</span> <br> Privacy Policy</h4>
+                                    <p><strong><i>Last Updated: 2025-05-06</i></strong></p>
+
+                                    <p>BloomExpress ("we", "us", or "our") respects your privacy and is committed to protecting your personal information. This Privacy Policy explains how we collect, use, share, and protect your information when you use our website [www.bloomexpress.com] or any of our Services.</p>
+
+                                    <h5>1. Information We Collect</h5>
+                                    <p>We collect the following types of information:</p>
+                                    <ul>
+                                    <li><strong>Personal Information:</strong> Name, email address, phone number, billing and shipping addresses, payment information.</li>
+                                    <li><strong>Order Details:</strong> Product selection, delivery preferences.</li>
+                                    <li><strong>Technical Data:</strong> IP address, browser type, device information, cookies, and analytics data.</li>
+                                    </ul>
+
+                                    <h5>2. How We Use Your Information</h5>
+                                    <p>We use your information to:</p>
+                                    <ul>
+                                    <li>Process and deliver your orders;</li>
+                                    <li>Communicate with you about your order and customer support;</li>
+                                    <li>Improve and personalize your experience;</li>
+                                    <li>Send promotional offers or updates (only with your consent);</li>
+                                    <li>Prevent fraud or misuse of our Services.</li>
+                                    </ul>
+
+                                    <h5>3. Sharing Your Information</h5>
+                                    <p>We do not sell your personal data. We only share your information with:</p>
+                                    <ul>
+                                    <li>Payment processors to handle transactions;</li>
+                                    <li>Delivery partners for fulfilling your order;</li>
+                                    <li>Service providers that assist with website hosting, analytics, or marketing (under strict confidentiality agreements);</li>
+                                    <li>Authorities if required by law.</li>
+                                    </ul>
+
+                                    <h5>4. Cookies and Tracking Technologies</h5>
+                                    <p>We use cookies and similar tools to enhance user experience, track website usage, and deliver relevant advertisements. You may adjust your browser settings to disable cookies, but some features may not function properly.</p>
+
+                                    <h5>5. Your Rights</h5>
+                                    <p>Depending on your location, you may have the right to:</p>
+                                    <ul>
+                                    <li>Access, correct, or delete your personal data;</li>
+                                    <li>Withdraw consent for marketing communications;</li>
+                                    <li>Lodge a complaint with a data protection authority.</li>
+                                    </ul>
+                                    <p>To exercise your rights, contact us at contact@bloomexpress.com.</p>
+
+                                    <h5>6. Third-Party Links</h5>
+                                    <p>Our Site may contain links to external websites. We are not responsible for the privacy practices of those third parties.</p>
+
+                                    <h5>7. Children's Privacy</h5>
+                                    <p>Our Services are not intended for children under 13. We do not knowingly collect personal information from children.</p>
+
+                                    <h5>8. Changes to This Policy</h5>
+                                    <p>We may update this Privacy Policy from time to time. Updates will be posted on this page with a new effective date.</p>
+
+                                    <h5>9. Contact Us</h5>
+                                    <p>If you have any questions or concerns about this Privacy Policy, please contact us:</p>
+                                    <p>
+                                    Email: <i> contact@bloomexpress.com </i><br>
+                                    Phone: <i> +359 00 000 0000 </i><br>
+                                    Address: <i> Pravets, Bulgaria </i><br>
+                                    Website: <i> www.bloomexpress.com </i>
+                                    </p>
+
+                                </div>
+                            </div>
+                        </div>
 
 
 

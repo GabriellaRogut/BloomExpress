@@ -1186,6 +1186,10 @@ td.edit-td-pass{
     font-size: 11px ;
 }
 
+.termsAndConditionsLink{
+    text-decoration: underline;
+}
+
 .bday-explain{
     font-size: 13px;
     color: var(--gray);
@@ -1236,5 +1240,31 @@ td.edit-td-pass{
 tr:last-child{
     border-bottom: 1px solid #bbbbbbb4;
     border-right:1px solid #bbbbbbb4;
+}
+
+.termsAndConditionsPopup{
+    height: 340px !important; 
+    overflow-y: scroll;
+}
+
+.termsAndConditionsPopup h6{
+    color: var(--gold);
+}
+
+.termsAndConditionsPopup h5 {
+    color: var(--text-gold);
+}
+
+.termsAndConditionsPopup i {
+    color: var(--mauve);
+}
+
+.termsAndConditionsPopup span {
+    color: var(--gold);
+    font-size: 27px;
+}
+
+.termsAndConditionsPopup h4 {
+    color: var(--dark-purple);
 }
 

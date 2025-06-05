@@ -34,7 +34,7 @@
           <hr class="footer-hr"/>
 
           <p class="footer-txt">Pravets, Bulgaria</p>
-          <p class="footer-txt">example@gmail.com</p>
+          <p class="footer-txt">contact@bloomexpress.com</p>
           <p class="footer-txt">+359 00 000 0000</p>
         </div>
 
@@ -376,6 +376,21 @@ function toggleDropdown(button) {
 
         document.getElementById('openPopupBtn').addEventListener('click', openAccPopup);
 </script>
+
+
+<!-- terms and conditions popup -->
+<script>
+        function openTermsAndConditions() {
+            document.getElementById("tcPopup").style.display = "block";
+            document.getElementById("tcOverlay").style.display = "block";
+        }
+
+        function closeTermsAndConditions() {
+            document.getElementById("tcPopup").style.display = "none";
+            document.getElementById("tcOverlay").style.display = "none";
+        }
+</script>
+
 
 
 <!-- copy to clipboard -->
