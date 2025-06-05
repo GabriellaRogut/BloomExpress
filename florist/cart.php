@@ -288,7 +288,7 @@
 
                         <form method="POST" action="php-action-files/termsAndConditions.php">
                             <p class="cart-txt">
-                                <input type="checkbox" class="tc-checkbox" value="on" name="terms_and_conditions"> I agree to <span class="tc-span termsAndConditionsLink"><a onclick="openTermsAndConditions()">Terms and Conditions</a></span>  
+                                <input type="checkbox" class="tc-checkbox" value="on" name="terms_and_conditions"> I agree to <span class="tc-span termsAndConditionsLink"><a onclick="openTermsAndConditions()" style="cursor: pointer;">Terms and Conditions</a></span>  
                             </p>
 
                             <?php

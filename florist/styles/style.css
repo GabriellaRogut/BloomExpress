@@ -592,17 +592,6 @@ body > *:not(.footer) {
     padding-left: 30px;
 }
 
-.promo_inp{
-    width: 75%;
-    float: left;
-}
-
-.promo-btn{
-    float: left;
-    border-radius: 0px;
-    font-size: 15px;
-    margin: 9px 0;
-}
 
 .total-price{
     font-size: 20px;
@@ -798,6 +787,18 @@ body > *:not(.footer) {
 
 .phone-inp {
     margin-left: 10px;
+}
+
+.promo_inp{
+    width: 76%;
+    float: left;
+}
+
+.promo-btn{
+    float: left;
+    border-radius: 0px;
+    font-size: 15px;
+    margin: 9px 0;
 }
 
 /* dropdown color */
@@ -1253,14 +1254,3 @@ td.edit-td-pass{
     animation: blinkFade 1.5s forwards;
     padding-top: 4px;
 }
-
-
-
-
-
-
-
-
-
-
-
